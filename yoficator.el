@@ -1,4 +1,4 @@
-;;; yoficator.el -- Interactively yoficate Russian texts
+;;; yoficator.el --- Interactively yoficate Russian texts
 
 ;; Copyright (C) 2003 Eugene Minkovskii
 ;; Copyright (C) 2017 Alexander Krotov
@@ -31,7 +31,7 @@
 ;; according to built-in dictionary.  In ambiguous cases it asks user to
 ;; select the correct variant.
 ;;
-;; Use M-x run-yoficator to run yoficator.
+;; Use M-x yoficator-run to run yoficator.
 
 ;;; Code:
 
@@ -46,7 +46,7 @@
   "Words in the text may be splitting by some strings:
 for example: hy\\-phe\\-na\\-ti\\-on in TeX")
 
-(defun read-yoficator-database (file-name &optional encoding)
+(defun yoficator-read-database (file-name &optional encoding)
   "Reading yo database from FILENAME and return cons:
 \(only-yo-hash . may-be-yo-hash) where hash mapping word whithout yo
 to corresponding yoficator-form"
@@ -69,12 +69,12 @@ to corresponding yoficator-form"
     (cons only-yo may-be-yo)))
 
 (defvar yoficator-hash
-  (read-yoficator-database yoficator-database-file yoficator-database-codingsystem)
+  (yoficator-read-database yoficator-database-file yoficator-database-codingsystem)
   "cons (only-yo-hash . may-be-yo-hash) where hashes map words
 without yo to corresponding yo-form")
 
 ;;;###autoload
-(defun run-yoficator ()
+(defun yoficator-run ()
   "Run yoficator interactively"
   (interactive)
   (save-restriction
@@ -96,7 +96,7 @@ without yo to corresponding yo-form")
             (setq current-yo-word (gethash current-e-word (car yoficator-hash))))
           (if current-yo-word
               (replace-match current-yo-word nil)
-            (setq current-yo-word (gethash current-e-word (cdr yo-hash)))
+            (setq current-yo-word (gethash current-e-word (cdr yoficator-hash)))
             (when current-yo-word
               (if search-highlight
                   (isearch-highlight (match-beginning 0) (match-end 0)))
@@ -106,3 +106,6 @@ without yo to corresponding yo-form")
                 (undo-boundary)
                 (replace-match current-yo-word nil))
               (isearch-dehighlight))))))))
+
+(provide 'yoficator)
+;;; yoficator.el ends here
