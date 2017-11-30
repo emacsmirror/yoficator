@@ -37,19 +37,20 @@
 
 (defvar yoficator-database-file
   (expand-file-name "yo.txt" (file-name-directory load-file-name))
-  "Yoficator dictionary filename")
+  "Yoficator dictionary filename.")
 
 (defvar yoficator-database-codingsystem 'utf-8
-  "Yoficator dictionary encoding")
+  "Yoficator dictionary encoding.")
 
 (defvar yoficator-cutting-strings (list "\\-" "\"=" "\"~")
   "Words in the text may be splitting by some strings:
 for example: hy\\-phe\\-na\\-ti\\-on in TeX")
 
 (defun yoficator-read-database (file-name &optional encoding)
-  "Reading yo database from FILENAME and return cons:
+  "Reading yo database from FILE-NAME and return cons:
 \(only-yo-hash . may-be-yo-hash) where hash mapping word whithout yo
-to corresponding yoficator-form"
+to corresponding yoficator-form
+Optional argument ENCODING specifies encoding of the database file."
   (let ((only-yo (make-hash-table :test 'equal :size 60000))
         (may-be-yo (make-hash-table :test 'equal :size 2000))
         current-word)
@@ -70,12 +71,11 @@ to corresponding yoficator-form"
 
 (defvar yoficator-hash
   (yoficator-read-database yoficator-database-file yoficator-database-codingsystem)
-  "cons (only-yo-hash . may-be-yo-hash) where hashes map words
-without yo to corresponding yo-form")
+  "Cons (only-yo-hash . may-be-yo-hash) where hashes map words without yo to corresponding yo-form.")
 
 ;;;###autoload
 (defun yoficator-run ()
-  "Run yoficator interactively"
+  "Run yoficator interactively."
   (interactive)
   (save-restriction
     (save-excursion
