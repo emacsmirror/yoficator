@@ -76,8 +76,8 @@ Optional argument ENCODING specifies encoding of the database file."
 (defun yoficator-run ()
   "Run yoficator interactively."
   (interactive)
-  (save-restriction
-    (save-excursion
+  (save-excursion
+    (save-restriction
       (let (current-e-word
             current-yo-word
             (cutting (concat "\\(?:"
