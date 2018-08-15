@@ -80,10 +80,7 @@ Optional argument ENCODING specifies encoding of the database file."
     (save-restriction
       (let (current-e-word
             current-yo-word
-            (cutting (concat "\\(?:"
-                             (mapconcat 'regexp-quote
-                                        yoficator-cutting-strings "\\|")
-                             "\\)")))
+            (cutting (regexp-opt yoficator-cutting-strings)))
         (while (re-search-forward
                 (concat "\\(?:\\w\\(?:\\w\\|" cutting "\\)*\\)?"
                         "\\(?:е\\|Е\\)"
