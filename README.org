@@ -1,3 +1,5 @@
+[[https://melpa.org/#/yoficator][file:https://melpa.org/packages/yoficator-badge.svg]]
+
 Yoficator is an Emacs package to interactively replace letter «е» with letter «ё» in Russian texts according to built-in dictionary.
 It is based on [[http://python.anabar.ru/yo.htm][yo.el for XEmacs]] by Eugene Minkovskii.
 
