@@ -1,7 +1,7 @@
 ;;; yoficator.el --- Interactively yoficate Russian texts
 
 ;; Copyright (C) 2003 Eugene Minkovskii
-;; Copyright (C) 2017 Alexander Krotov
+;; Copyright (C) 2017-2019 Alexander Krotov
 
 ;; Author: Eugene Minkovskii <emin@mccme.ru>
 ;;         Alexander Krotov <ilabdsf@gmail.com>
